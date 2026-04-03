@@ -9,7 +9,7 @@ function TimelineNode({ data, index }) {
   const Icon = data.icon;
   
   return (
-    <div className="w-[300px] md:w-[400px] flex-shrink-0 flex flex-col items-start px-8 border-l border-[rgba(0,255,65,0.3)] relative">
+    <div className="w-[300px] md:w-[400px] flex-shrink-0 flex flex-col items-start px-8 border-l border-[rgba(0,255,65,0.3)] relative" data-cursor="pointer">
       {/* Node Dot -> Terminal Tic */}
       <div className="absolute -left-[3px] top-0 w-[5px] h-[15px] bg-[#00ff41]" />
       

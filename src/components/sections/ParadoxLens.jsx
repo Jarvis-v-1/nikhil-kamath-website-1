@@ -99,6 +99,7 @@ function ParadoxCard({ data, isMobile }) {
     <motion.div 
       ref={cardRef}
       className="relative w-full aspect-square md:aspect-[4/3] overflow-hidden cursor-none group paradox-card bg-[#111] border border-[rgba(255,42,42,0.2)] transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+      data-cursor="pointer"
       onClick={() => isMobile && setIsTapped(!isTapped)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

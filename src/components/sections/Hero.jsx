@@ -13,7 +13,7 @@ function Stat({ label, value, status = 'neutral' }) {
   const prefix = status === 'profit' ? '▲ ' : status === 'loss' ? '▼ ' : '■ ';
 
   return (
-    <div ref={ref} className="border border-[rgba(0,255,65,0.2)] bg-[#0A0A0A] p-4 flex flex-col min-w-[140px] relative">
+    <div ref={ref} className="border border-[rgba(0,255,65,0.2)] bg-[#0A0A0A] p-4 flex flex-col min-w-[140px] relative" data-cursor="pointer">
       {/* Decorative corner brackets */}
       <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#00ff41] opacity-50" />
       <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#00ff41] opacity-50" />

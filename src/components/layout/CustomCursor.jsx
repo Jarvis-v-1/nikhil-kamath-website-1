@@ -51,18 +51,19 @@ export default function CustomCursor() {
     <>
       {/* 1. Small dot (always active, no spring, raw mouse position) */}
       <div 
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-chartreuse z-[100] pointer-events-none mix-blend-difference"
+        className="fixed top-0 left-0 w-2 h-2 rounded-none bg-[#00ff41] shadow-[0_0_8px_rgba(0,255,65,0.8)] z-[100] pointer-events-none"
         style={{ 
           transform: `translate3d(${mousePosition.x - 4}px, ${mousePosition.y - 4}px, 0)`,
           opacity: isHovering ? 0 : 1
         }}
       />
       
-      {/* 2. Knight Icon (spring-based follower, only on hover) */}
+      {/* 2. Knight Icon / Crosshair (spring-based follower, only on hover) */}
       <motion.div
         className="fixed top-0 left-0 w-8 h-8 z-[100] pointer-events-none"
         style={{
           position: "fixed",
+          border: '1px solid rgba(0, 255, 65, 0.5)',
           x: cursorX,
           y: cursorY,
           translateX: '-50%',
@@ -70,12 +71,16 @@ export default function CustomCursor() {
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ 
-          scale: isHovering ? 1 : 0.5, 
+          scale: isHovering ? 1.2 : 0.5, 
           opacity: isHovering ? 1 : 0 
         }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
-        <img src={ASSETS.cursor} alt="" className="w-full h-full" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-[1px] h-full bg-[#00ff41] opacity-30" />
+          <div className="h-[1px] w-full bg-[#00ff41] opacity-30 absolute" />
+          <img src={ASSETS.cursor} alt="" className="w-4 h-4 relative z-10 invert brightness-200" />
+        </div>
       </motion.div>
     </>
   );
