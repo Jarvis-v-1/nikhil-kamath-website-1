@@ -12,22 +12,22 @@ export default function ChessGate() {
   const isChartInView = useInView(chartRef, { once: true, amount: 0.5 });
 
   return (
-    <section ref={containerRef} className="relative w-full py-24 md:py-32 overflow-hidden bg-bone dark:bg-charcoal text-charcoal dark:text-bone z-10 transition-colors duration-500">
+    <section ref={containerRef} className="relative w-full py-24 md:py-32 overflow-hidden bg-[#050505] text-[#E0E0E0] z-10 transition-colors duration-500 terminal-grid">
       
       {/* Background Textures */}
       <div 
-        className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none transition-opacity duration-500"
+        className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none transition-opacity duration-500"
         style={{
           backgroundImage: `url(${ASSETS.givingPledgeBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
-          filter: 'grayscale(100%)'
+          filter: 'grayscale(100%) sepia(100%) hue-rotate(80deg)'
         }}
       />
       
-      <div className="absolute right-0 top-1/4 w-[600px] h-[600px] z-0 opacity-[0.07] dark:opacity-[0.12] pointer-events-none transition-opacity duration-500 flex items-center justify-center">
-        <img src={ASSETS.anandShadow} alt="" className="object-contain w-full h-full filter saturate-0 mix-blend-multiply dark:mix-blend-screen" />
+      <div className="absolute right-0 top-1/4 w-[600px] h-[600px] z-0 opacity-[0.15] pointer-events-none transition-opacity duration-500 flex items-center justify-center">
+        <img src={ASSETS.anandShadow} alt="" className="object-contain w-full h-full filter saturate-0 mix-blend-screen opacity-30" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -40,7 +40,7 @@ export default function ChessGate() {
         {/* Hero Number */}
         <div className="relative mb-16 md:mb-24">
           <motion.div 
-            className="font-grotesk font-bold leading-none tracking-tighter text-[100px] sm:text-[140px] md:text-[200px] lg:text-[250px] text-charcoal/10 dark:text-bone/10"
+            className="font-mono font-bold leading-none tracking-tighter text-[100px] sm:text-[140px] md:text-[200px] lg:text-[250px] text-[#1a1a1a]"
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, ease: "easeOut" }}
@@ -48,7 +48,7 @@ export default function ChessGate() {
             <span className="relative">
               98.9<span className="text-[60px] sm:text-[80px] md:text-[120px] lg:text-[150px] align-top">%</span>
               <motion.div 
-                className="absolute inset-0 text-chartreuse mix-blend-multiply dark:mix-blend-screen"
+                className="absolute inset-0 text-[#00ff41] text-glow-green mix-blend-screen"
                 initial={{ clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)' }}
                 animate={isInView ? { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' } : {}}
                 transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
@@ -59,13 +59,13 @@ export default function ChessGate() {
           </motion.div>
           
           <motion.div 
-            className="text-lg md:text-xl font-serif italic max-w-xl text-charcoal-mid dark:text-bone-dim mt-4 pl-2 border-l-2 border-chartreuse relative"
+            className="text-lg md:text-xl font-mono max-w-xl text-[#00ff41] mt-4 pl-4 border-l-2 border-[#00ff41] relative bg-[rgba(0,255,65,0.05)] py-2 pr-2"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1.5 }}
           >
-            "This was for fun and charity. In hindsight, it was quite silly. Apologies."
-            <span className="block mt-2 font-mono text-xs uppercase not-italic opacity-50 tracking-widest">— Nikhil Kamath, June 2021</span>
+            "THIS WAS FOR FUN AND CHARITY. IN HINDSIGHT, IT WAS QUITE SILLY. APOLOGIES."
+            <span className="block mt-4 text-[#606060] font-mono text-xs uppercase tracking-widest">— NIKHIL KAMATH, JUNE 2021</span>
           </motion.div>
         </div>
 
@@ -73,13 +73,13 @@ export default function ChessGate() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           
           {/* Narrative Text */}
-          <div className="space-y-8 text-base md:text-lg text-charcoal-mid dark:text-bone-dim font-inter leading-relaxed relative">
+          <div className="space-y-8 text-base md:text-sm text-[#E0E0E0] font-mono uppercase leading-relaxed relative">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              In June 2021, a billionaire sat down to play chess against a five-time world champion. He won. <strong className="text-charcoal dark:text-bone">It was too perfect.</strong>
+              In June 2021, a billionaire sat down to play chess against a five-time world champion. He won. <strong className="text-[#00ff41]">It was too perfect.</strong>
             </motion.p>
             
             <motion.p
@@ -95,7 +95,7 @@ export default function ChessGate() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              The internet was unforgiving. Forbes ran a piece titled "Liar's Chess." But within 24 hours, <strong className="text-chartreuse-dim dark:text-chartreuse">Anand himself asked Chess.com to restore Nikhil's account.</strong>
+               The internet was unforgiving. Forbes ran a piece titled "Liar's Chess." But within 24 hours, <strong className="text-[#00ff41]">Anand himself asked Chess.com to restore Nikhil's account.</strong>
             </motion.p>
             
             <motion.p
@@ -109,15 +109,16 @@ export default function ChessGate() {
 
           {/* Chart Section */}
           <div className="relative">
-            <div className="mb-6 flex justify-between font-mono text-xs text-charcoal-mid dark:text-bone-dim uppercase tracking-widest">
+            <div className="mb-6 flex justify-between font-mono text-xs text-[#606060] uppercase tracking-widest border-b border-[rgba(0,255,65,0.2)] pb-2 rounded-none">
               <span>Historical Accuracy</span>
-              <span className="text-chartreuse">The Anomaly</span>
+              <span className="text-[#ff2a2a] animate-pulse">The Anomaly</span>
             </div>
             
             <div 
               ref={chartRef}
-              className="w-full h-[350px] md:h-[400px] glass-panel dark:glass-panel-dark rounded-2xl p-6"
+              className="w-full h-[350px] md:h-[400px] bg-[#0a0a0a] border border-[#1a1a1a] p-6 relative overflow-hidden"
             >
+               <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,65,0.05),transparent_2px)] bg-[size:100%_4px] pointer-events-none mix-blend-overlay" />
               <AccuracyChart data={CHESS_DATA} inView={isChartInView} />
             </div>
           </div>

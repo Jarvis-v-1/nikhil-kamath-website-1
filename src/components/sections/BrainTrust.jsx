@@ -5,11 +5,11 @@ import { ASSETS } from '../../utils/constants';
 
 export default function BrainTrust() {
   return (
-    <section className="relative w-full py-24 md:py-32 bg-bone dark:bg-[var(--bg-secondary)] overflow-hidden transition-colors duration-500 z-10 px-6 md:px-12">
+    <section className="relative w-full py-24 md:py-32 bg-[#050505] overflow-hidden transition-colors duration-500 z-10 px-6 md:px-12 terminal-grid">
       
       {/* Background Texture */}
       <div 
-        className="absolute inset-0 z-0 opacity-[0.05] dark:opacity-[0.1] mix-blend-multiply dark:mix-blend-screen pointer-events-none transition-opacity duration-500 max-w-[800px] max-h-[800px]"
+        className="absolute inset-0 z-0 opacity-[0.05] mix-blend-overlay pointer-events-none transition-opacity duration-500 max-w-[800px] max-h-[800px]"
         style={{
           backgroundImage: `url(${ASSETS.gruhasBg})`,
           backgroundSize: 'contain',
@@ -20,14 +20,14 @@ export default function BrainTrust() {
       
       <div className="max-w-7xl mx-auto relative z-10">
         <SectionHeading 
-          title="The Brain Trust" 
+          title="The Syndicate" 
           subtitle="Inner Circle"
           align="center"
-          className="mb-16 md:mb-24"
+          className="mb-16 md:mb-24 text-[#E0E0E0]"
         />
         
-        <p className="text-center font-inter text-charcoal-mid dark:text-bone-dim max-w-2xl mx-auto mt-[-3rem] mb-16">
-          No empire is built alone. These three made Nikhil's contradictions operational. Hover to reveal.
+        <p className="text-center font-mono text-[10px] uppercase text-[#606060] max-w-2xl mx-auto mt-[-3rem] mb-16 tracking-widest">
+          SYS.ADMIN DETECTED. THESE NODES SECURE THE NETWORK. HOVER TO DECRYPT BIO.
         </p>
         
         <div className="flex flex-col lg:flex-row gap-6 md:gap-8 w-full justify-center">

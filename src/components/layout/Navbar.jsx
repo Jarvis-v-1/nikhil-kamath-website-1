@@ -61,13 +61,16 @@ export default function Navbar() {
     <AnimatePresence>
       {isVisible && (
         <motion.div 
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] hidden md:block" // Hidden on mobile to save space
-          initial={{ y: 50, opacity: 0, scale: 0.9 }}
-          animate={{ y: 0, opacity: 1, scale: 1 }}
-          exit={{ y: 50, opacity: 0, scale: 0.9 }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          className="fixed bottom-0 left-0 w-full z-[90] hidden md:flex border-t border-[rgba(0,255,65,0.2)] bg-[#050505]"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 50, opacity: 0 }}
+          transition={{ duration: 0.3 }}
         >
-          <nav className="glass-panel dark:glass-panel-dark rounded-full px-2 py-2 flex items-center shadow-2xl border border-charcoal/5 dark:border-bone/10 transition-colors duration-500">
+          <div className="flex items-center text-[10px] font-mono tracking-widest text-[#606060] px-4 py-1 border-r border-[rgba(0,255,65,0.2)]">
+            SYS_NAV
+          </div>
+          <nav className="flex items-center w-full">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.id;
               
@@ -76,21 +79,13 @@ export default function Navbar() {
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
                   data-cursor="pointer"
-                  className={`relative px-4 py-2 font-mono text-[10px] uppercase tracking-widest rounded-full transition-colors duration-300
+                  className={`relative px-6 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors duration-150 border-r border-[rgba(0,255,65,0.1)]
                     ${isActive 
-                      ? 'text-charcoal' // Text color when active (due to chartreuse bg)
-                      : 'text-charcoal-mid hover:text-charcoal dark:text-bone-dim dark:hover:text-bone'
+                      ? 'text-[#050505] bg-[#00ff41]' 
+                      : 'text-[#E0E0E0] hover:text-[#00ff41] hover:bg-[rgba(0,255,65,0.05)]'
                     }`}
                 >
-                  {/* Active Indicator Background */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="nav-indicator"
-                      className="absolute inset-0 bg-chartreuse rounded-full z-[-1]"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">{item.label}</span>
+                  <span className="relative z-10">[{item.label}]</span>
                 </button>
               );
             })}

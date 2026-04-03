@@ -38,27 +38,27 @@ function ParadoxCard({ data, isMobile }) {
 
   // Surface Layer (Dark/Charcoal - The "Redacted" File)
   const SurfaceLayer = () => (
-    <div className="absolute inset-0 bg-[#1a1a1a] text-bone-dim p-8 md:p-14 flex flex-col justify-center border border-white/5 rounded-2xl shadow-inner z-10 select-none overflow-hidden group-hover:bg-[#121212] transition-colors duration-500">
+    <div className="absolute inset-0 bg-[#111] text-[#E0E0E0] p-8 md:p-14 flex flex-col justify-center border border-[rgba(255,42,42,0.3)] rounded-none shadow-inner z-10 select-none overflow-hidden group-hover:bg-[#0a0a0a] transition-colors duration-500">
       {/* Background Technical Grid */}
-      <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,42,42,0.05),transparent_2px)] bg-[size:100%_4px] pointer-events-none mix-blend-overlay" />
       
       {/* Folder Tab Detail */}
-      <div className="absolute top-0 right-10 bg-white/5 px-4 py-1 rounded-b-lg font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 border-x border-b border-white/10">
-        FILE_{data.id * 1024}_X
+      <div className="absolute top-0 right-8 bg-[rgba(255,42,42,0.1)] px-4 py-1 font-mono text-[9px] uppercase tracking-[0.3em] text-[#ff2a2a] border-x border-b border-[rgba(255,42,42,0.3)]">
+        SHORT_POSITION
       </div>
 
-      <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-chartreuse mb-6 flex items-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-chartreuse animate-pulse" />
+      <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#ff2a2a] mb-6 flex items-center gap-2">
+        <span className="w-2 h-2 rounded-none bg-[#ff2a2a] animate-pulse" />
         PUBLIC_NARRATIVE_{data.id}
       </div>
       
-      <h3 className="font-grotesk font-bold text-2xl md:text-3xl lg:text-4xl leading-[1.1] tracking-tight text-bone group-hover:text-white transition-colors">
+      <h3 className="font-mono font-bold text-xl md:text-2xl lg:text-3xl leading-[1.2] tracking-tight text-[#E0E0E0] group-hover:text-white transition-colors uppercase border-l-2 border-[#ff2a2a] pl-4">
         {data.surface}
       </h3>
       
       <div className="mt-12 flex items-center gap-4 group-hover:translate-x-2 transition-transform">
-        <div className="h-[1px] w-12 bg-white/10" />
-        <span className="font-mono text-[10px] text-white/30 uppercase tracking-[0.4em]">Initialize Searchlight</span>
+        <div className="h-[1px] w-12 bg-[rgba(255,42,42,0.5)]" />
+        <span className="font-mono text-[10px] text-[#ff2a2a] uppercase tracking-[0.4em]">INIT_ORDER</span>
       </div>
     </div>
   );
@@ -66,30 +66,30 @@ function ParadoxCard({ data, isMobile }) {
   // Truth Layer (Light/Bone - The "Searchlight" Reveal)
   const TruthLayer = () => (
     <motion.div 
-      className={`absolute inset-0 bg-bone text-charcoal p-8 md:p-14 flex flex-col justify-center border-4 border-chartreuse/30 rounded-2xl shadow-2xl z-20 pointer-events-none transition-opacity duration-300 ${isMobile && !isTapped ? 'opacity-0' : 'opacity-100'}`}
+      className={`absolute inset-0 bg-[#050505] text-[#00ff41] p-8 md:p-14 flex flex-col justify-center border-2 border-[#00ff41] rounded-none shadow-[0_0_30px_rgba(0,255,65,0.2)] z-20 pointer-events-none transition-opacity duration-300 ${isMobile && !isTapped ? 'opacity-0' : 'opacity-100'}`}
       style={{
         clipPath: isMobile ? 'none' : clipPath,
         WebkitClipPath: isMobile ? 'none' : clipPath,
         willChange: 'clip-path'
       }}
     >
-      <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] text-red-600 font-bold mb-6 flex items-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-red-600" />
-        CLASSIFIED_TRUTH
+      <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] text-[#00ff41] font-bold mb-6 flex items-center gap-2">
+        <span className="w-2 h-2 rounded-none bg-[#00ff41] text-glow-green" />
+        LONG_POSITION_REALITY
       </div>
       
       <div className="relative mb-8">
-        <p className="font-mono italic text-xl md:text-2xl lg:text-3xl leading-snug text-charcoal font-bold">
+        <p className="font-mono text-lg md:text-xl lg:text-2xl leading-snug text-[#00ff41] text-glow-green uppercase">
           {data.truth}
         </p>
       </div>
 
-      <div className="mt-auto pt-8 border-t border-charcoal/10 flex justify-between items-center">
-        <span className="font-mono text-[9px] uppercase font-bold tracking-widest text-charcoal/40">Reference: BIO_ARCHIVE</span>
+      <div className="mt-auto pt-8 border-t border-[rgba(0,255,65,0.3)] flex justify-between items-center">
+        <span className="font-mono text-[9px] uppercase font-bold tracking-widest text-[#606060]">LEDGER_ID: BIO_ARCHIVE</span>
         <div className="flex gap-1">
-          <div className="w-1.5 h-1.5 bg-charcoal/20" />
-          <div className="w-1.5 h-1.5 bg-charcoal/20" />
-          <div className="w-1.5 h-1.5 bg-chartreuse" />
+          <div className="w-1.5 h-1.5 bg-[#00ff41] opacity-30" />
+          <div className="w-1.5 h-1.5 bg-[#00ff41] opacity-30" />
+          <div className="w-1.5 h-1.5 bg-[#00ff41]" />
         </div>
       </div>
     </motion.div>
@@ -98,7 +98,7 @@ function ParadoxCard({ data, isMobile }) {
   return (
     <motion.div 
       ref={cardRef}
-      className="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden cursor-none group paradox-card bg-[#111] border border-white/20 hover:border-chartreuse/50 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.05)] hover:shadow-chartreuse/5"
+      className="relative w-full aspect-square md:aspect-[4/3] overflow-hidden cursor-none group paradox-card bg-[#111] border border-[rgba(255,42,42,0.2)] transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
       onClick={() => isMobile && setIsTapped(!isTapped)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -124,38 +124,22 @@ export default function ParadoxLens() {
   }, []);
 
   return (
-    <section id="paradox" className="relative w-full py-24 md:py-40 px-6 md:px-12 bg-charcoal text-bone overflow-hidden z-10">
-      {/* Background Separation Highlights */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-white/[0.02] blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-chartreuse/[0.02] blur-[120px]" />
-      </div>
-
-      {/* Background Image Texture */}
-      <div 
-        className="absolute inset-0 z-0 opacity-[0.03] mix-blend-screen grayscale pointer-events-none"
-        style={{
-          backgroundImage: `url(${ASSETS.kingfisherBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      />
+    <section id="paradox" className="relative w-full py-24 md:py-40 px-6 md:px-12 bg-[#050505] text-[#E0E0E0] overflow-hidden z-10 terminal-grid">
       
       {/* Noise Overlay specifically for this section to add grit */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.15] mix-blend-overlay bg-[url('/assets/textures/noise-overlay.png')]" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         <SectionHeading 
-          title="The Paradox Lens" 
+          title="The Paradox Ledger" 
           subtitle="Surface vs Reality"
           align="center"
-          className="mb-16 md:mb-32 dark"
+          className="mb-16 md:mb-32 text-[#E0E0E0]"
         />
         
         {isMobile && (
-          <p className="text-center font-mono text-[10px] text-chartreuse animate-pulse mb-8 uppercase tracking-[0.3em]">
-            ↓ Tap cards to decode ↓
+          <p className="text-center font-mono text-[10px] text-[#00ff41] animate-pulse mb-8 uppercase tracking-[0.3em]">
+            ↓ Tap blocks to decode ↓
           </p>
         )}
         

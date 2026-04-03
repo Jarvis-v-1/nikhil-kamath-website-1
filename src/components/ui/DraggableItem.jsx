@@ -59,26 +59,26 @@ export default function DraggableItem({ item, containerRef, isMobile }) {
         >
           {/* Front of Card (Image) */}
           <div 
-            className="absolute inset-0 backface-hidden bg-white p-2 md:p-3 shadow-xl rounded-sm border border-gray-100"
+            className="absolute inset-0 backface-hidden bg-[#0A0A0A] p-2 md:p-3 shadow-2xl border border-[rgba(0,255,65,0.3)] filter sepia"
             style={{ backfaceVisibility: "hidden" }}
           >
-            <div className="w-full h-full bg-gray-100 relative overflow-hidden">
+            <div className="w-full h-full bg-[#1A1A1A] relative overflow-hidden">
               <img 
                 src={item.image} 
                 alt={item.alt} 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover filter grayscale contrast-125"
                 draggable={false}
               />
               
               {/* Optional Easter Egg Label */}
               {item.interactive && !isFlipped && (
-                <div className="absolute inset-0 bg-chartreuse/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity z-10" onClick={(e) => {
+                <div className="absolute inset-0 bg-[rgba(0,255,65,0.1)] flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity z-10" onClick={(e) => {
                   if (item.interactive) {
                     // Handled by parent or inner Lottie trigger if needed
                   }
                 }}>
-                  <span className="bg-charcoal text-bone text-xs px-2 py-1 rotate-[-10deg] font-mono">
-                    CLICK
+                  <span className="bg-[#050505] text-[#00ff41] border border-[#00ff41] text-xs px-2 py-1 rotate-[0deg] font-mono shadow-[0_0_10px_rgba(0,255,65,0.2)]">
+                    DECRYPT_FILE
                   </span>
                 </div>
               )}
@@ -87,10 +87,10 @@ export default function DraggableItem({ item, containerRef, isMobile }) {
 
           {/* Back of Card (Text Story) */}
           <div 
-            className="absolute inset-0 backface-hidden bg-bone border border-charcoal/10 shadow-2xl rounded-sm p-3 md:p-5 flex flex-col justify-start transform rotate-y-180"
+            className="absolute inset-0 backface-hidden bg-[#0a0a0a] border border-[#00ff41] shadow-[0_0_20px_rgba(0,255,65,0.1)] p-3 md:p-5 flex flex-col justify-start transform rotate-y-180"
             style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
           >
-            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#d7d2c3] opacity-50 rounded-sm z-30" /> {/* Tape effect */}
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#00ff41] opacity-50 rounded-none z-30" /> {/* Terminal header notch */}
             
             <div className="w-full h-full overflow-y-auto custom-scrollbar pt-4 flex flex-col items-center justify-center">
               {item.interactive && item.lottie ? (
@@ -101,14 +101,16 @@ export default function DraggableItem({ item, containerRef, isMobile }) {
                     triggerOnClick={true}
                     size="w-[60px] h-[60px] md:w-[100px] md:h-[100px]"
                   />
-                  <p className="font-mono text-[9px] md:text-[10px] mt-4 text-charcoal/70 uppercase tracking-widest leading-relaxed">
+                  <p className="font-mono text-[9px] md:text-[10px] mt-4 text-[#E0E0E0] uppercase tracking-widest leading-relaxed">
                     {item.easterEggLabel}
                   </p>
                 </div>
               ) : (
-                <p className="font-mono text-[10px] md:text-xs text-charcoal/80 leading-relaxed font-bold text-center">
-                  {item.backText}
-                </p>
+                <div className="terminal-grid p-2 w-full h-full bg-[#050505] border border-[rgba(0,255,65,0.2)] flex items-center">
+                  <p className="font-mono text-[10px] md:text-xs text-[#00ff41] leading-relaxed font-normal text-left">
+                    <span className="animate-pulse mr-2">_&gt;</span>{item.backText}
+                  </p>
+                </div>
               )}
             </div>
           </div>

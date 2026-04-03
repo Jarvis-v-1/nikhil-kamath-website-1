@@ -4,6 +4,7 @@ import { ThemeProvider } from './hooks/useTheme';
 import CustomCursor from './components/layout/CustomCursor';
 import NoiseOverlay from './components/layout/NoiseOverlay';
 import Navbar from './components/layout/Navbar';
+import TickerTape from './components/ui/TickerTape';
 
 import Preloader from './components/sections/Preloader';
 import Hero from './components/sections/Hero';
@@ -26,6 +27,7 @@ function AppContent() {
     <>
       <CustomCursor />
       <NoiseOverlay />
+      <TickerTape />
       <Navbar />
       
       {loading && <Preloader onComplete={() => setLoading(false)} />}

@@ -23,25 +23,26 @@ export default function Scrapbook() {
   }, []);
 
   return (
-    <section id="archive" className="relative w-full h-[120vh] min-h-[900px] overflow-hidden bg-bone dark:bg-charcoal text-charcoal dark:text-bone transition-colors duration-500 py-24 md:py-32">
+    <section id="archive" className="relative w-full h-[120vh] min-h-[900px] overflow-hidden bg-[#050505] text-[#E0E0E0] transition-colors duration-500 py-24 md:py-32 terminal-grid">
       
       {/* Section Header - Non-overlapping */}
       <div className="absolute top-12 left-6 md:left-12 z-20 pointer-events-none md:max-w-xl">
         <SectionHeading 
           title="The Deep Cuts" 
-          subtitle={isMobile ? "Tap to reveal" : "Drag & Discover"}
-          className="mb-4"
+          subtitle={isMobile ? "Tap to decrypt" : "Drag & Decrypt"}
+          className="mb-4 text-[#E0E0E0]"
         />
-        <p className="font-mono text-xs md:text-sm text-charcoal-mid dark:text-bone-dim uppercase tracking-widest max-w-sm mt-[-1rem]">
-          The stories that 99% of his followers don't know. {isMobile ? 'Tap cards to flip them.' : 'Hover to read, drag to organize.'}
+        <p className="font-mono text-xs md:text-sm text-[#606060] uppercase tracking-widest max-w-sm mt-[-1rem]">
+          Hidden data packets. {isMobile ? 'Tap packets to decode.' : 'Hover to preview, drag to organize.'}
         </p>
       </div>
 
       {/* The "Desk" Surface */}
       <div 
         ref={containerRef} 
-        className="absolute inset-x-6 md:inset-x-12 top-[320px] md:top-[280px] bottom-12 rounded-2xl border border-charcoal/5 dark:border-bone/5 bg-black/[0.02] dark:bg-white/[0.02] pointer-events-none"
+        className="absolute inset-x-6 md:inset-x-12 top-[320px] md:top-[280px] bottom-12 border border-[rgba(0,255,65,0.2)] bg-[rgba(0,255,65,0.02)] pointer-events-none overflow-hidden"
       >
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,65,0.05),transparent_2px)] bg-[size:100%_4px] mix-blend-overlay pointer-events-none" />
         {/* Scattered Items */}
         {isReady && SCRAPBOOK_ITEMS.map((item, index) => {
           // Calculate a wider scatter grid (3 columns x 2 rows roughly)
