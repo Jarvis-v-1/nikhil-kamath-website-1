@@ -1,0 +1,82 @@
+import { useEffect, useState } from 'react';
+import { motion, useSpring } from 'framer-motion';
+import { ASSETS } from '../../utils/constants';
+
+export default function CustomCursor() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  // Use springs for smooth follower physics
+  const cursorX = useSpring(0, { stiffness: 600, damping: 30 });
+  const cursorY = useSpring(0, { stiffness: 600, damping: 30 });
+
+  useEffect(() => {
+    // Check if device is touch or small screen
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+
+    const onMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+      
+      // Also update CSS vars for clip-path revealing
+      document.documentElement.style.setProperty('--cx', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--cy', `${e.clientY}px`);
+    };
+
+    const updateHoverState = (e) => {
+      const target = e.target;
+      const isInteractive = target.closest('[data-cursor="pointer"]') || 
+                           target.tagName.toLowerCase() === 'a' || 
+                           target.tagName.toLowerCase() === 'button';
+      setIsHovering(!!isInteractive);
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseover', updateHoverState);
+
+    return () => {
+      window.removeEventListener('resize', checkDesktop);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseover', updateHoverState);
+    };
+  }, [cursorX, cursorY]);
+
+  if (!isDesktop) return null;
+
+  return (
+    <>
+      {/* 1. Small dot (always active, no spring, raw mouse position) */}
+      <div 
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-chartreuse z-[100] pointer-events-none mix-blend-difference"
+        style={{ 
+          transform: `translate3d(${mousePosition.x - 4}px, ${mousePosition.y - 4}px, 0)`,
+          opacity: isHovering ? 0 : 1
+        }}
+      />
+      
+      {/* 2. Knight Icon (spring-based follower, only on hover) */}
+      <motion.div
+        className="fixed top-0 left-0 w-8 h-8 z-[100] pointer-events-none"
+        style={{
+          position: "fixed",
+          x: cursorX,
+          y: cursorY,
+          translateX: '-50%',
+          translateY: '-50%'
+        }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ 
+          scale: isHovering ? 1 : 0.5, 
+          opacity: isHovering ? 1 : 0 
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      >
+        <img src={ASSETS.cursor} alt="" className="w-full h-full" />
+      </motion.div>
+    </>
+  );
+}
